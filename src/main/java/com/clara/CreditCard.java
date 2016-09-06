@@ -2,9 +2,8 @@ package com.clara;
 
 import java.util.Scanner;
 
-/**
- * Created by we4954cp on 8/31/2016.
- */
+// Created by we4954cp on 8/31/2016.
+
 public class CreditCard {
 
     static Scanner stringScanner = new Scanner(System.in);
@@ -27,14 +26,29 @@ public class CreditCard {
 
     public static boolean isValidCreditCard(String cc) {
 
-        //TODO Replace with your code to process the credit card number, and determine if it is valid.
-        //TODO Make sure all the tests pass!
+        char[] ccArray = cc.toCharArray();
+        String add = "";
+        int total = 0;
 
-        return false;
-
+        if (ccArray.length == 16 && ccArray[0] == '4') {
+            for (int i = 0; i < ccArray.length; i++) {
+                if (i % 2 == 0) {
+                    if (ccArray[i] == '1') add += 2;
+                    else if (ccArray[i] == '2') add += 4;
+                    else if (ccArray[i] == '3') add += 6;
+                    else if (ccArray[i] == '4') add += 8;
+                    else if (ccArray[i] == '5') add += 1;
+                    else if (ccArray[i] == '6') add += 3;
+                    else if (ccArray[i] == '7') add += 5;
+                    else if (ccArray[i] == '8') add += 7;
+                    else if (ccArray[i] == '9') add += 9;
+                } else add += ccArray[i];
+            }
+            char[] numsToAdd = add.toCharArray();
+            for (int i = 0; i < numsToAdd.length; i++) {
+                total += numsToAdd[i] - 48;
+            }
+            return total % 10 == 0;
+        } else return false;
     }
-
-
-
-
 }
